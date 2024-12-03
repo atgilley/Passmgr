@@ -68,7 +68,7 @@ def exit_program():
 # Create the main window
 root = tk.Tk()
 root.title("Password Manager")
-root.geometry("500x400")
+root.geometry("700x400")
 
 # Frames for better organization
 input_frame = tk.Frame(root, padx=10, pady=10)
