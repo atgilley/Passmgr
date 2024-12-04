@@ -1,3 +1,6 @@
+# Alex Gilleylen
+#
+
 import tkinter as tk
 from tkinter import messagebox
 from Password_generator import generate_password

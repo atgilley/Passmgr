@@ -12,9 +12,7 @@ if not os.path.exists(SECURE_DIR):
 
 # Generate or load the encryption key
 def load_or_generate_key():
-    """
-    Loads the encryption key from a file or generates a new one if it doesn't exist.
-    """
+    
     if not os.path.exists(KEY_FILE):
         key = Fernet.generate_key()
         with open(KEY_FILE, "wb") as key_file:
@@ -31,37 +29,22 @@ cipher = Fernet(key)
 
 # Encryption and decryption functions
 def encrypt_password(password):
-    """
-    Encrypt a plaintext password using the Fernet cipher.
-    """
+    
     return cipher.encrypt(password.encode()).decode()
 
 def decrypt_password(encrypted_password):
-    """
-    Decrypt an encrypted password back to plaintext.
-    """
+    
     return cipher.decrypt(encrypted_password.encode()).decode()
 
 # Store and retrieve password functions
 def store_password(username, site_or_program, password):
-    """
-    Encrypt and store a password with a username and associated site/program.
-    """
+   
     encrypted_password = encrypt_password(password)
     with open(PASSWORD_STORAGE_FILE, "a") as file:
         file.write(f"{username},{site_or_program},{encrypted_password}\n")
 
 def retrieve_password(username, site_or_program):
-    """
-    Retrieve and decrypt the password for a given username and site/program.
-
-    Args:
-        username (str): The username.
-        site_or_program (str): The site or program name.
-
-    Returns:
-        str: The decrypted password if found, or None if not found.
-    """
+    
     try:
         with open(PASSWORD_STORAGE_FILE, "r") as file:
             for line in file:
